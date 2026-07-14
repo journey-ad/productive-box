@@ -100,18 +100,18 @@ interface Edge {
   if (!sum) return;
 
   const oneDay = [
-    { label: '🌞 Morning', commits: morning },
-    { label: '🌆 Daytime', commits: daytime },
-    { label: '🌃 Evening', commits: evening },
-    { label: '🌙 Night', commits: night },
+    { label: '🌞 早晨', commits: morning },
+    { label: '🌆 日间', commits: daytime },
+    { label: '🌃 晚上', commits: evening },
+    { label: '🌙 深夜', commits: night },
   ];
 
   const lines = oneDay.reduce((prev, cur) => {
     const percent = (cur.commits / sum) * 100;
     const line = [
-      `${cur.label}`.padEnd(10),
+      `${cur.label}`.padEnd(5),
       `${cur.commits.toString().padStart(5)} commits`.padEnd(14),
-      generateBarChart(percent, 21),
+      generateBarChart(percent, 25),
       String(percent.toFixed(1)).padStart(5) + '%',
     ];
 
@@ -139,7 +139,7 @@ interface Edge {
     gist_id: `${process.env.GIST_ID}`,
     files: {
       [filename]: {
-        filename: morning + daytime > evening + night ? "I'm an early 🐤" : "I'm a night 🦉",
+        filename: morning + daytime > evening + night ? '我通常在日间提交代码到 Github 🐤' : '我通常在晚上提交代码到 Github 🦉',
         content: lines.join('\n'),
       },
     },
